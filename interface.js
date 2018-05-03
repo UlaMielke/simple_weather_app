@@ -24,14 +24,19 @@ function weatherFor(city) {
             if (tempUnit === "F") {
                 temp = (temp - 32) / 1.8;
             }
-            return new Weather(city, cuntry, conditions, Math.round(temp));
-
+            renderWeather(new Weather(city, cuntry, conditions, Math.round(temp)));
         })
         .fail(function (jqxhr, textStatus, error) {
-            let err = textStatus + ", " + error;
-            console.log("Request Failed: " + err);
-            return null;
+            handleError(textStatus, error);
         });
+}
+
+function renderWeather(weather){
+    console.log(weather);
+}
+function handleError(status, error){
+    let err = textStatus + ", " + error;
+    console.log("Request Failed: " + err);
 }
 
 function txtNormalize(city) {
